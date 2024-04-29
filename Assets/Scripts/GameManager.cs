@@ -2,21 +2,30 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager _gameManager;
+    public static GameManager instance;
 
     private void Awake()
     {
-        if (_gameManager == null)
+        if (instance == null)
         {
-            _gameManager = this;
+            instance = this;
             DontDestroyOnLoad(this);
         }
         else
         {
             Destroy(this);
+        }
+    }
+
+    void GoToNextScene()
+    {
+        if (SceneManager.GetActiveScene().buildIndex < SceneManager.sceneCount)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
     
