@@ -50,6 +50,7 @@ public class MouseController : MonoBehaviour
                 if (Input.GetMouseButtonDown(0))
                 {
                     Destroy(hit.collider.gameObject);
+                    GameManager.instance.audioManager.sfx.PlayOneShot(GameManager.instance.audioManager.note);
                 }
             }
 

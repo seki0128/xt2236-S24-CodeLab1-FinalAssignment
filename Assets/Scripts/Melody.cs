@@ -16,40 +16,16 @@ public class Melody : ScriptableObject
         {
             melody.Enqueue(i);
         }
-
-
         return melody;
     }
 
 
     void PlayMelody()
     {
-        foreach (var i in melody)
-        {
-            PlaySingleNote(i);
-        }
+        //foreach (var i in melody)
+
 
     }
     
-    void PlaySingleNote(char i)
-    {
-        AudioClip note;
-        switch (i)
-        {
-            case '1':
-                break;
-            case '2':
-                break;
-            case '3':
-                break;
-            case '4':
-                break;
-            case '5':
-                break;
-            case '6':
-                break;
-            case '7':
-                break;
-        }
-    }
+
 }

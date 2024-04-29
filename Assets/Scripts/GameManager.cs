@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public AudioManager audioManager;
 
     private void Awake()
     {
@@ -19,6 +20,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this);
         }
+
+        audioManager = GetComponentInChildren<AudioManager>();
     }
 
     void GoToNextScene()
