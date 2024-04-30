@@ -2,16 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public AudioSource bg;
     public AudioSource sfx;
     public AudioClip note;
     public Melody currentMelody;
 
-    [SerializeField] bool playMode;
+    public bool playMode;
     public float timeGap = 0.8f;
     float timer = 0;
 
@@ -28,6 +28,7 @@ public class AudioManager : MonoBehaviour
         {
             playMode = true;
             currentMelody.CreateQueue(); // Create the play queue based on melody string
+            GameManager.instance.inputRecorder.recordMelody = currentMelody.melody.ToArray(); // Copy the queue in the recorder
         }
 
         if (playMode)

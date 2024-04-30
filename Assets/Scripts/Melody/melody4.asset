@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36b5a8b0783a73b45b1c48a1c1e8171a, type: 3}
-  m_Name: BasicMelody
+  m_Name: melody4
   m_EditorClassIdentifier: 
-  name: ddd
-  melodyInfo: 312212
-  next: {fileID: 11400000, guid: 7b69fa2f548294c4ab402c5b0986aab5, type: 2}
+  name: 
+  melodyInfo: 234567
+  next: {fileID: 0}

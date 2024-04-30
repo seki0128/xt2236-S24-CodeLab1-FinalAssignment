@@ -4,13 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public AudioManager audioManager;
+    public InputRecorder inputRecorder;
+    
 
     private void Awake()
     {
+        audioManager = GetComponentInChildren<AudioManager>();
+        inputRecorder = GetComponentInChildren<InputRecorder>();
+        
         if (instance == null)
         {
             instance = this;
@@ -20,16 +26,27 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this);
         }
-
-        audioManager = GetComponentInChildren<AudioManager>();
     }
 
-    void GoToNextScene()
+    private void Update()
     {
-        if (SceneManager.GetActiveScene().buildIndex < SceneManager.sceneCount)
+        if (Input.GetKeyDown(KeyCode.D))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            if (audioManager.currentMelody.next != null)
+            {
+                if (inputRecorder.nextMelody.IsActive())
+                {
+                    inputRecorder.ResetUI();
+                    inputRecorder.progress = 0;
+                    audioManager.currentMelody = audioManager.currentMelody.next;
+                }
+            }
+            else
+            {
+                
+            }
+
         }
+
     }
-    
 }

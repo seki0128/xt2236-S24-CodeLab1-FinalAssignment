@@ -44,15 +44,16 @@ public class MouseController : MonoBehaviour
             
             if (Physics.Raycast(ray, out hit))
             {
-                cursorImage.color = Color.red;
-
-                if (Input.GetMouseButtonDown(0))
+                if (!GameManager.instance.audioManager.playMode)
                 {
-                    Destroy(hit.collider.gameObject);
-                    GameManager.instance.audioManager.sfx.PlayOneShot(GameManager.instance.audioManager.note);
+                    cursorImage.color = Color.red;
+
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        Destroy(hit.collider.gameObject);
+                    }
                 }
             }
-
     }
 }
 
