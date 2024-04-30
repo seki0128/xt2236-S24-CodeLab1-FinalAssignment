@@ -44,7 +44,6 @@ public class MouseController : MonoBehaviour
             
             if (Physics.Raycast(ray, out hit))
             {
-                Debug.Log("hit" + hit.colliderInstanceID);
                 cursorImage.color = Color.red;
 
                 if (Input.GetMouseButtonDown(0))

@@ -10,22 +10,13 @@ public class Melody : ScriptableObject
     public Queue<char> melody;
     
     
-    Queue<char> CreateQueue()
+    public Queue<char> CreateQueue()
     {
+        melody = new Queue<char>();
         foreach (char i in melodyInfo)
         {
             melody.Enqueue(i);
         }
         return melody;
     }
-
-
-    void PlayMelody()
-    {
-        //foreach (var i in melody)
-
-
-    }
-    
-
 }

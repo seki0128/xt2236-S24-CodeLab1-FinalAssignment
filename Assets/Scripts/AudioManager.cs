@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -10,27 +11,54 @@ public class AudioManager : MonoBehaviour
     public AudioClip note;
     public Melody currentMelody;
 
+    [SerializeField] bool playMode;
+    public float timeGap = 0.8f;
+    float timer = 0;
+
+    private TextMeshProUGUI playStageUI;
+
+    private void Awake()
+    {
+        playStageUI = GameObject.Find("PlayStageUI").GetComponent<TextMeshProUGUI>();
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
+            playMode = true;
+            currentMelody.CreateQueue(); // Create the play queue based on melody string
+        }
+
+        if (playMode)
+        {
             PlayMelody(currentMelody);
+            playStageUI.text = "Playing ...";
+        }
+        else
+        {
+            playStageUI.text = "";
         }
     }
 
     void PlayMelody(Melody melody)
     {
-        float timeGap = 1.0f;
-        float timer = 0;
-
+        
         if (timer <= timeGap)
         {
             timer += Time.deltaTime;
         }
         else
         {
+            if (melody.melody.Count != 0)
+            {
+                PlayOneNote((melody.melody.Dequeue())); // Pop up the first note and play it
+            }
+            else
+            {
+                playMode = false;
+            }
             timer = 0;
-            PlayOneNote((melody.melody.Peek()));
         }
     }
     
